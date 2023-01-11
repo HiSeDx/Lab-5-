@@ -117,7 +117,7 @@ double** create_array ( int num_of_pts ){
  double** arr_of_pts =(double**) malloc( num_of_pts * sizeof(double) );
 
  for(int i=0;i<num_of_pts;i++)
-    arr_of_pts[i]=(int*) malloc(3 * sizeof(int));
+    arr_of_pts[i]=(double*) malloc(3 * sizeof(double));
 
  return arr_of_pts;
 
