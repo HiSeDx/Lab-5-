@@ -58,7 +58,8 @@ int main(){
  read_bin( arr_of_pts, f_out_bin );
  print_array ( arr_of_pts, num_of_pts );
 
- for(int i=0; i<num_of_pts; i++) free(arr_of_pts[i]);
+ for(int i=0; i<num_of_pts; i++) 
+  free(arr_of_pts[i]);
     free( arr_of_pts );
 
  return 0;
