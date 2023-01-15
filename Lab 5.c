@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include <math.h>
 
+#define Txt_IN "txt_in.txt"
+#define Txt_OUT "txt_out.txt"
+#define fileBin_OUT "bin_out.bin"
+
 
 double func( double );
 void write_file( int num_of_pts, double x1, double delta, FILE * f_out, char group_name [], char name [] );
@@ -18,9 +22,9 @@ int main(){
  char group_name[N], name[N];
  FILE * f_in, * f_out, * f_out_bin;
 
- f_in = fopen( "txt_in.txt", "r" );
- f_out = fopen( "txt_out.txt", "w" );
- f_out_bin = fopen( "bin_out.bin", "wb" );
+ f_in = fopen( Txt_IN, "r" );
+ f_out = fopen( Txt_OUT, "w" );
+ f_out_bin = fopen( fileBin_OUT, "wb" );
 
  if ( f_in == NULL || f_out == NULL || f_out_bin == NULL ){
     printf("\nCannot open a file!");
@@ -58,8 +62,7 @@ int main(){
  read_bin( arr_of_pts, f_out_bin );
  print_array ( arr_of_pts, num_of_pts );
 
- for(int i=0; i<num_of_pts; i++) 
-  free(arr_of_pts[i]);
+ for(int i=0; i<num_of_pts; i++) free(arr_of_pts[i]);
     free( arr_of_pts );
 
  return 0;
@@ -131,7 +134,7 @@ void read_bin( double** arr_of_pts, FILE * f_out_bin ){
  int N = 0;
  double temp;
 
- f_out_bin = fopen( "bin_out.bin", "rb" );
+ f_out_bin = fopen( fileBin_OUT, "rb" );
  fread( &N, sizeof(int), 1, f_out_bin );
 
  for (int i=0;i<N;i++){
