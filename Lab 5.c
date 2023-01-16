@@ -26,8 +26,28 @@ int main(){
  f_out = fopen( Txt_OUT, "w" );
  f_out_bin = fopen( fileBin_OUT, "wb" );
 
- if ( f_in == NULL || f_out == NULL || f_out_bin == NULL ){
-    printf("\nCannot open a file!");
+ if ( f_in == NULL ){
+    fclose( f_out );
+    fclose( f_out_bin );
+    printf("\nCannot open an input file!");
+    printf("Press any key to exit...");
+    getch();
+    exit (1);
+ }
+
+ if ( f_out == NULL ){
+    fclose( f_in );
+    fclose( f_out_bin );
+    printf("\nCannot open an output file!");
+    printf("Press any key to exit...");
+    getch();
+    exit (1);
+ }
+
+ if ( f_out_bin == NULL ){
+    fclose( f_in );
+    fclose( f_out );
+    printf("\nCannot open an output bin file!");
     printf("Press any key to exit...");
     getch();
     exit (1);
@@ -62,8 +82,11 @@ int main(){
  read_bin( arr_of_pts, f_out_bin );
  print_array ( arr_of_pts, num_of_pts );
 
- for(int i=0; i<num_of_pts; i++) free(arr_of_pts[i]);
-    free( arr_of_pts );
+ for(int i=0; i<num_of_pts; i++){
+    free(arr_of_pts[i]);
+ }
+
+ free( arr_of_pts );
 
  return 0;
 }
